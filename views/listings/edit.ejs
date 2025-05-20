@@ -1,0 +1,70 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+    <h1>Edit the details</h1>
+    <form action="/listings/<%=list._id%>?_method=PUT" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div>
+            <label for="title"class="form-label">Title</label>
+            <input type="text" name="listing[title]"value="<%=list.title%>" class="form-control" required>
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div><br>
+        <div>
+            <label for="description"class="form-label">Description</label>
+            <textarea  name="listing[description]" class="form-control" required><%=list.description%></textarea>
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div><br>
+
+        <div>
+            <label for="image"class="form-label">Upload New Image</label>
+            <input type="file"name="listing[image]"  class="form-control">
+        </div><br>
+                <div>
+            <label for="category"class="form-label">Category</label>
+            <select name="listing[category]"id="category" class="form-control" required>
+                <option value="mountain">Mountain</option>
+                 <option value="mountain-city">Mountain-City</option>
+                  <option value="pools">Pool</option>
+                   <option value="island">Island</option>
+                    <option value="hiking">Hiking</option>
+                     <option value="trending">Trending</option>
+                      <option value="domes">Domes</option>
+            </select>
+            <div class="invalid-feedback">
+             this field is required!!!
+              </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="price"class="form-label ">Price</label>
+                <input type="number" name="listing[price]" required value="<%=list.price%>" class="form-control">
+                <div class="invalid-feedback">
+                    this field is required!!!
+                     </div>
+            </div>
+            <div class="col-md-8">
+                <label for="location"class="form-label ">Location</label>
+                <input type="text" name="listing[location]" required value="<%=list.location%>" class="form-control">
+                <div class="invalid-feedback">
+                    this field is required!!!
+                     </div>
+            </div>
+        </div><br>
+        
+        <div>
+            <label for="country"class="form-label">Country</label>
+            <input type="text" name="listing[country]" required value="<%=list.country%>" class="form-control">
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div><br>
+        <button class="btn btn-dark add-btn">submit</button>
+        <br><br> 
+    </form>
+</div>
+</div>
+</body>

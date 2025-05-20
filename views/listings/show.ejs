@@ -1,0 +1,93 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    
+    <div class="card offset-3 show-card listing-card" style="width: 50%; margin-top:50px;">
+        <img src="<%=list.image.url%>" class="card-img-top" alt="image" style="height: 25rem;">
+        <div class="card-body">
+                    <h5 class="card-title"style="margin-top:2rem;font-size:2rem;"><%=list.title%></h5>
+          <p class="card-text">Owned by : <%=list.owner.username%></p>
+          <p class="card-text"><%=list.description%> <br>
+            <i class="fa-solid fa-tags"></i> &#8377;<%=list.price.toLocaleString("en-in")%>/night <br>
+            <i class="fa-solid fa-location-arrow"></i> <%=list.location%>,<%=list.country%></p>
+           <% if(curruser && curruser._id.equals(list.owner._id)){ %>
+            <div class="row">
+               <div class="col-2 ">
+                <a href="/listings/<%=list._id%>/edit" class="btn btn-dark add-btn">Edit</a>
+               </div>
+               <div class="col-1 ">
+                <form action="/listings/<%=list._id%>?_method=DELETE" method="post">
+                    <button class="btn btn-dark add-btn">Delete</button>
+                </form>
+               </div>
+            </div>
+              <% } %>
+              <hr>
+            <% if(curruser){ %>
+            <div class="mt-4">
+                <h4>Add  Review</h4>
+                <form action="/listings/<%=list._id%>/reviews" method="post" novalidate class="needs-validation">
+                    <div class="mt-2 mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <fieldset class="starability-growRotate">
+                          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                          <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                          <label for="first-rate1" title="Terrible">1 star</label>
+                          <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                          <label for="first-rate2" title="Not good">2 stars</label>
+                          <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                          <label for="first-rate3" title="Average">3 stars</label>
+                          <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                          <label for="first-rate4" title="Very good">4 stars</label>
+                          <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                          <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                      </div>
+                    <div class="mt-2 mb-3">
+                        <label for="comment" class="form-label">Comment</label><br>
+                        <textarea name="review[comment]" class="form-control" id="comment"placeholder="add a comment" required></textarea>
+                        <div class="invalid-feedback">
+                            leave a proper comment
+                             </div>
+                    </div>
+        
+                    <button class="btn btn-dark add-btn">submit</button>
+                </form>
+             </div>
+          
+          <hr>
+            <% } %>
+          <div class="row">
+          <% for(let review of list.reviews){%>
+            
+          <div class="card  show-card col-5 m-3 ">
+            <div class="card-body ">
+               <h5 class="card-title">@<%=review.author.username%></h5>
+              <p class="starability-result card-title" data-rating="<%=review.rating%>"></p>
+              <p class="card-text"><%=review.comment%></p>
+            </div>
+            <form class="m-3" method="post" action="/listings/<%=list._id%>/reviews/<%=review._id%>?_method=DELETE">
+              <button class="btn btn-dark add-btn">Delete</button>
+             </form>
+          </div>
+          <%}%>
+        </div>
+        </div>
+      </div>
+
+
+
+
+    <!-- <ul>
+        <li></li>
+        <li><%=list.description%></li>
+        <li>&#8377; <%=list.price.toLocaleString("en-in")%></li>
+        <li><%=list.location%></li>
+        <li><%=list.country%></li>
+    </ul>
+    <form action="/listings/<%=list._id%>/edit" method="get">
+        <button>Edit</button>
+    </form><br>
+    <form action="/listings/<%=list._id%>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form> -->
+</body>

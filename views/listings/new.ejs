@@ -1,0 +1,72 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    
+    <div class="row">
+    <div class="col-8 offset-2">
+        <h1>Create New List</h1>
+    <form action="/listings" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div>
+            <label for="title"class="form-label">Title</label>
+            <input type="text" name="listing[title]" required placeholder="Enter title" class="form-control">
+            <div class="invalid-feedback">
+             this field is required!!!
+              </div>
+        </div><br>
+        <div>
+            <label for="description"class="form-label">Description</label>
+            <textarea  required name="listing[description]" class="form-control" placeholder="Enter description"></textarea>
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div><br>
+        <div>
+            <label for="image"class="form-label">Upload Image</label>
+            <input required type="file"name="listing[image]" class="form-control">
+            <div class="invalid-feedback">
+                choose image!!!
+                 </div>
+            </div>
+        <div>
+            <label for="category"class="form-label">Category</label>
+            <select name="listing[category]"id="category" class="form-control" required>
+                <option value="mountain">Mountain</option>
+                 <option value="mountain-city">Mountain-City</option>
+                  <option value="pools">Pool</option>
+                   <option value="island">Island</option>
+                    <option value="hiking">Hiking</option>
+                     <option value="trending">Trending</option>
+                      <option value="domes">Domes</option>
+            </select>
+            <div class="invalid-feedback">
+             this field is required!!!
+              </div>
+        </div><br>
+        <div class="row">
+        <div class="col-md-4">
+            <label for="price"class="form-label ">Price</label>
+            <input   required name="listing[price]" placeholder="Enter price" class="form-control">
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div>
+        <div class="col-md-8">
+            <label for="location"class="form-label ">Location</label>
+            <input type="text"  required  name="listing[location]" placeholder="Enter location" class="form-control">
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div>
+        </div><br>
+        <div>
+            <label for="country"class="form-label">Country</label>
+            <input type="text" required name="listing[country]" placeholder="Enter country" class="form-control">
+            <div class="invalid-feedback">
+                this field is required!!!
+                 </div>
+        </div><br>
+        <button class="btn btn-dark add-btn">Add</button>
+        <br><br> 
+    </form>
+</div>
+</div>
+</body>
